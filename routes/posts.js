@@ -3,7 +3,11 @@ var router = express.Router();
 
 // list posts
 router.get('/', function(req, res, next) {
-    res.send('posts here!');
+    var posts = [
+        { name: 'Inndy', msg: 'Hello, World!' },
+        { name: 'NTUST', msg: '＼118／＼118／＼118／＼118／＼118／' }
+    ];
+    res.render('posts', { title: '留言列表', posts: posts });
 });
 
 router.get('/new', function(req, res, next) {
