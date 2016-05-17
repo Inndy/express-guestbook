@@ -1,13 +1,12 @@
 var express = require('express');
 var router = express.Router();
+var models = require('../models');
 
 // list posts
 router.get('/', function(req, res, next) {
-    var posts = [
-        { name: 'Inndy', msg: 'Hello, World!' },
-        { name: 'NTUST', msg: '＼118／＼118／＼118／＼118／＼118／' }
-    ];
-    res.render('posts', { title: '留言列表', posts: posts });
+    models.post.findAll().then(function(posts) {
+        res.render('posts', { title: '留言列表', posts: posts });
+    });
 });
 
 router.get('/new', function(req, res, next) {
@@ -15,10 +14,8 @@ router.get('/new', function(req, res, next) {
 });
 
 router.post('/new', function(req, res, next) {
-    var posts = [
-        req.body
-    ];
-    res.render('posts', { title: '留言成功', posts: posts });
+    models.post.create(req.body);
+    res.redirect('/posts');
 });
 
 module.exports = router;
