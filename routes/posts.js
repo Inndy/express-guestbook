@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/new', function(req, res, next) {
-    res.send('post form here!');
+    res.render('new_post', { 'title': '新增留言' });
 });
 
 router.post('/new', function(req, res, next) {
