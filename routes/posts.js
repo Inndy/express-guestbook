@@ -15,7 +15,10 @@ router.get('/new', function(req, res, next) {
 });
 
 router.post('/new', function(req, res, next) {
-    res.send('you have sent your message!');
+    var posts = [
+        req.body
+    ];
+    res.render('posts', { title: '留言成功', posts: posts });
 });
 
 module.exports = router;
