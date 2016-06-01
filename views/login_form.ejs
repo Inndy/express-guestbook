@@ -13,17 +13,21 @@
         <h1><%= title %></h1>
       </div>
 
-      <ul class="nav nav-pills">
-        <li>
-          <a class="btn btn-default navbar-btn" href="/posts">查看留言</a>
-        </li>
-        <li>
-          <a class="btn btn-default navbar-btn" href="/posts/new">新增留言</a>
-        </li>
-        <li>
-          <a class="btn btn-default navbar-btn" href="/login">管理登入</a>
-        </li>
-      </ul>
+      <form action="/login" method="POST">
+        <legend>登入</legend>
+
+        <div class="form-group">
+          <label for="inp_name">User:</label>
+          <input type="text" class="form-control" id="inp_name" placeholder="User" name="user">
+        </div>
+
+        <div class="form-group">
+          <label for="inp_pwd">Password:</label>
+          <input type="password" class="form-control" id="inp_pwd" placeholder="Password" name="pass">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Login</button>
+      </form>
     </div>
   </body>
 </html>
