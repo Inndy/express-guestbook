@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+var models = require('../models');
+var bcrypt = require('bcrypt');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -11,11 +13,17 @@ router.get('/login', function(req, res, next) {
 });
 
 router.post('/login', function(req, res, next) {
-	if(req.body.user == 'admin' && req.body.pass == 'admin') {
-		res.send('你登入成功！');
-	} else {
-		res.send('你登入失敗...');
-	}
+	models.User.findOne({
+		where: {
+			user: req.body.user
+		}
+	}).then(function(user) {
+		if(user && bcrypt.compareSync(req.body.pass, user.pass)) {
+			res.send('登入成功');
+		} else {
+			res.send('登入失敗');
+		}
+	});
 });
 
 module.exports = router;
