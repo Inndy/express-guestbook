@@ -8,6 +8,11 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
+router.get('/logout', function(req, res, next) {
+	req.session.destroy();
+	res.redirect('/posts');
+});
+
 router.get('/login', function(req, res, next) {
 	res.render('login_form', { title: '登入管理'});
 });
@@ -19,7 +24,8 @@ router.post('/login', function(req, res, next) {
 		}
 	}).then(function(user) {
 		if(user && bcrypt.compareSync(req.body.pass, user.pass)) {
-			res.send('登入成功');
+			req.session.admin = 1;
+			res.redirect('/posts');
 		} else {
 			res.send('登入失敗');
 		}

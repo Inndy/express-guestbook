@@ -5,7 +5,7 @@ var models = require('../models');
 // list posts
 router.get('/', function(req, res, next) {
     models.Post.findAll().then(function(posts) {
-        res.render('posts', { title: '留言列表', posts: posts });
+        res.render('posts', { title: '留言列表', posts: posts, admin: req.session.admin });
     });
 });
 
@@ -19,6 +19,10 @@ router.post('/new', function(req, res, next) {
 });
 
 router.get('/delete/:id', function(req, res, next) {
+	if(req.session.admin != 1) {
+		res.send('你不是管理員');
+		return;
+	}
 	var post_id = req.params.id;
 	models.Post.destroy({
 		where: {

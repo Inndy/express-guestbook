@@ -22,6 +22,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+var session = require('express-session');
+app.use(session({
+    secret: 'awjgawuy43t3g9ruvhigar', // 產生隨機文字換掉他，用來保護 session
+    saveUninitialized: false,
+    resave: false
+}));
+
 app.use('/', routes);
 app.use('/posts', posts);
 

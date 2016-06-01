@@ -20,6 +20,15 @@
         <li>
           <a class="btn btn-default navbar-btn" href="/posts/new">新增留言</a>
         </li>
+        <% if(admin) { %>
+        <li>
+          <a class="btn btn-default navbar-btn" href="/logout">登出</a>
+        </li>
+        <% } else { %>
+        <li>
+          <a class="btn btn-default navbar-btn" href="/login">登入</a>
+        </li>
+        <% } %>
       </ul>
 
       <table class="table table-striped">
