@@ -27,6 +27,7 @@
           <tr>
             <th>姓名</th>
             <th>留言內容</th>
+            <th>刪除</th>
           </tr>
         </thead>
         <tbody>
@@ -37,6 +38,9 @@
             </td>
             <td>
               <p><%= post.msg %></p>
+            </td>
+            <td>
+              <a href="/posts/delete/<%= post.id %>" class="btn btn-danger">刪除</a>
             </td>
           </tr>
           <% }); %>
