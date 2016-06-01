@@ -5,9 +5,9 @@ var models = {};
 
 models.db = db;
 
-['post'].forEach(function(name) {
-    var model = require('./' + name);
-    models[name] = model(db, Sequelize);
+models.Post = db.define('post', {
+    'name': Sequelize.STRING,
+    'msg': Sequelize.TEXT
 });
 
 db.sync();
